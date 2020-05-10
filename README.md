@@ -1,6 +1,6 @@
 # getFromZDF
 
-A simple program based on the [ZDF Mediathek](https://github.com/MauriceConrad/zdf-mediathek) library. It alows the user to easily download videos from the ZDf Mediathek.
+A simple program based on the [ZDF Mediathek](https://github.com/MauriceConrad/zdf-mediathek) package. It alows the user to easily download videos from the ZDf Mediathek.
 
 
 ## Installation
