@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head><style>
+        table, td {
+          border: 1px solid black;
+          text-align: center;
+        }
+        </style></head>
+<body>
+
+<h1>ZDF downloader</h1>
+<p>Please enter the link of the Video you want to Download below.
+</p>
+
+<h3>How to use: </h3>
+<p>After you enterd a url you will see a few links pop up below. Click the one with the quality you want, If no List is created please check your link, it might be broken</p>
+
+<form action="javascript:handle(link.value)">
+  <label for="fname">Link to ZDF:</label>
+  <input type="text" id="link" name="link"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<h2 id="title">Answer: </h2>
+<p id="Description"></p>
+<table id="t"></table>
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+    var list = document.getElementById('t')
+    var des = document.getElementById('Description');
+    var title = document.getElementById('title');
+    function handle(value) {
+
+        var getUrl = window.location;
+        var baseUrl = getUrl.protocol + "//" + getUrl.host;
+        list.innerHTML="";
+        fetch(baseUrl+'?uri='+value)
+        .then(response => response.json())
+        .then(data => {
+            var i;
+            for(i = 0; i < data.files.length;i++)
+            {
+                var tableRow = list.insertRow(0);
+                var c1 = tableRow.insertCell(0);
+                c1.innerHTML = '<a href="'+data.files[i].uri+'">'+data.files[i].quality+'</a>';
+            }
+            des.innerHTML = data.info.teasertext;
+            title.innerHTML = data.info.title;
+            var tableRow = list.insertRow(0);
+            var c1 = tableRow.insertCell(0);
+            c1.innerHTML = "Download Links";
+        });
+    }
+
+  </script>
